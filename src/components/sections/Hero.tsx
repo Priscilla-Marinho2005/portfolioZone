@@ -120,9 +120,6 @@ export default function Hero() {
               </span>
             ))}
           </h1>
-          <p data-fade className="mt-5 mb-0 text-[0.78rem] tracking-[0.14em] text-muted uppercase opacity-0 motion-reduce:opacity-100">
-            {heroContent.eyebrow}
-          </p>
           <div data-fade className="mt-6 flex flex-wrap gap-3 opacity-0 motion-reduce:opacity-100">
             <a
               href={heroContent.primary.href}

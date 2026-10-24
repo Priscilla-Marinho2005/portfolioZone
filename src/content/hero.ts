@@ -13,7 +13,6 @@ export type HeroProject = {
 };
 
 export const heroContent = {
-  eyebrow: "Priscilla & Eduardo",
   title: "Transformamos ideias em experiências digitais.",
   highlight: "Sites, landing pages e sistemas web.",
   support:
