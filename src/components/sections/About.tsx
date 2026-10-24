@@ -19,7 +19,7 @@ const services = [
 ];
 
 const foundersLead =
-    "Por trás da Zone Connection estão Priscilla Marinho Falcão e Eduardo Alves, dois desenvolvedores que decidiram unir suas habilidades para construir algo próprio.";
+    "Por trás da Zone Connection estão Eduardo Alves e Priscilla Marinho, dois desenvolvedores que decidiram unir suas habilidades para construir algo próprio.";
 const foundersBody =
     "Compartilhando ideias, enfrentando desafios e aprendendo a cada projeto, encontramos na tecnologia uma oportunidade de criar soluções e tirar planos do papel. Hoje, dividimos a responsabilidade de desenvolver nossos projetos e fazer a empresa crescer, transformando nossa parceria em algo que vai além do código.";
 
