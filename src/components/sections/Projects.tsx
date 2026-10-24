@@ -224,7 +224,7 @@ export default function Projects() {
                 <div data-stage className="h-svh overflow-hidden px-8 max-md:px-6">
                     <div className="mx-auto grid h-full max-w-7xl grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-center gap-20 max-lg:gap-10 max-md:grid-cols-1 max-md:content-center max-md:gap-6">
                         <div
-                            className="relative h-[68svh] max-h-136 max-md:h-auto max-md:aspect-[16/10] max-md:[clip-path:inset(-3rem_-1rem_-0.5rem_-1rem)]"
+                            className="relative h-[68svh] max-h-136 max-md:h-auto max-md:aspect-16/10 max-md:[clip-path:inset(-3rem_-1rem_-0.5rem_-1rem)]"
                             role="list"
                             aria-label="Projetos"
                         >

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -8,14 +8,15 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 const titleWords = "Uma ideia que se tornou um propósito.".split(" ");
 
 const companyLead =
-    "A Zone Connection nasceu para aproximar empresas da tecnologia e transformar ideias em soluções reais.";
-const companyBody =
-    "Desenvolvemos sites, landing pages e sistemas web que ajudam negócios a fortalecer sua presença digital, atrair clientes e otimizar processos. Também criamos soluções próprias, como nosso CRM para imobiliárias, pensado para centralizar informações, organizar atendimentos e facilitar a gestão comercial. Unimos desenvolvimento e visão de negócio para criar ferramentas que fazem sentido na prática e acompanham o crescimento de cada empresa.";
+    "Criamos qualquer tipo de sistema para o seu negócio: ERP, CRM, gestão e muito mais.";
+const systemsText =
+    "A Zone Connection nasceu para aproximar empresas da tecnologia e transformar ideias em soluções reais. Trabalhamos com ERP, CRM, sistemas de gestão e qualquer outra solução que a sua empresa precisar. Entendemos como o seu negócio funciona, mapeamos o que precisa ser organizado e desenvolvemos um sistema sob medida, do controle da rotina ao acompanhamento de clientes e resultados.";
 
 const services = [
+    { name: "ERP e sistemas de gestão", note: "Para organizar e automatizar a rotina da empresa" },
+    { name: "CRM", note: "Clientes, atendimentos e negociações num só lugar" },
     { name: "Sites e landing pages", note: "Presença digital forte, para atrair clientes" },
-    { name: "Sistemas web", note: "Processos mais simples e otimizados" },
-    { name: "CRM para imobiliárias", note: "Atendimentos, informações e gestão comercial num só lugar" },
+    { name: "Qualquer outro sistema", note: "Se o seu negócio precisa, a gente desenvolve sob medida" },
 ];
 
 const foundersLead =
@@ -30,9 +31,11 @@ function Lead({ text }: { text: string }) {
             className="m-0 font-serif text-[clamp(1.7rem,2.9vw,2.5rem)] leading-[1.12] tracking-[-0.02em]"
         >
             {text.split(" ").map((word, i) => (
-                <span key={i} data-scrub className="inline-block pr-[0.26em]">
-                    {word}
-                </span>
+                <Fragment key={i}>
+                    <span data-scrub className="inline-block">
+                        {word}
+                    </span>{" "}
+                </Fragment>
             ))}
         </p>
     );
@@ -179,9 +182,9 @@ export default function About() {
 
                         <p
                             data-reveal
-                            className="mt-8 mb-0 max-w-[58ch] text-[1.02rem] leading-[1.7] text-muted opacity-0 motion-reduce:opacity-100"
+                            className="mt-8 mb-0 max-w-[58ch] text-[1.02rem] leading-[1.7] opacity-0 motion-reduce:opacity-100"
                         >
-                            {companyBody}
+                            {systemsText}
                         </p>
 
                         <ul className="mt-10 mb-0 list-none p-0">
