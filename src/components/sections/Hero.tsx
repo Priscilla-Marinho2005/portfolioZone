@@ -24,12 +24,11 @@ export type HeroProject = {
 
 export const heroContent = {
   title: "Transformamos ideias em experiências digitais.",
-  highlight: "Sites, landing pages e sistemas web.",
+  highlight: "Sites, CRM's e outros sistemas web.",
   support:
     "Desenvolvemos soluções digitais que unem design, tecnologia e funcionalidade para transformar ideias em projetos reais.",
   primary: { label: "Explorar projetos", href: "#projetos" },
   secondary: { label: "Conheça nossa história", href: "#historia" },
-  company: "Fundadores da Zone Connection",
 };
 
 export const heroProjects: HeroProject[] = [
@@ -139,7 +138,7 @@ export default function Hero() {
                       key={`${copy}-${project.id}`}
                       src={project.src}
                       alt=""
-                      className="h-auto w-105 rounded-lg object-contain shadow-[0_18px_40px_rgba(18,17,15,0.08)] max-md:w-105"
+                      className="h-auto w-105 rounded-lg object-contain shadow-[0_18px_40px_rgba(5,54,71,0.08)] max-md:w-105"
                     />
                   ))}
                 </div>
@@ -149,9 +148,9 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 z-10 grid grid-cols-[minmax(0,1.15fr)_minmax(16rem,0.7fr)] items-end gap-10 bg-linear-to-t from-paper via-paper/95 to-transparent px-8 pt-28 pb-10 max-md:relative max-md:grid-cols-1 max-md:px-6 max-md:pt-72 max-md:pb-8">
-        <div>
-          <h1 className="m-0 max-w-[12ch] text-[clamp(2.7rem,5.4vw,4.8rem)] leading-[0.9] font-[650] tracking-[-0.045em]">
+      <div className="absolute inset-x-0 bottom-0 z-10 grid grid-cols-[minmax(0,1.15fr)_minmax(16rem,0.7fr)] items-end gap-5 bg-linear-to-t from-paper via-paper/95 to-transparent px-8 pt-28 pb-10 max-md:relative max-md:grid-cols-1 max-md:px-6 max-md:pt-89">
+        <div className="max-md:contents">
+          <h1 className="m-0 max-w-[19ch] text-[clamp(2.5rem,4.2vw,3.6rem)] leading-[0.9] font-[650] max-md:order-1">
             {leftWords.map((word) => (
               <span key={word} className="mr-[0.22em] inline-block overflow-hidden align-bottom">
                 <span data-left className="inline-block translate-y-[110%] motion-reduce:translate-y-0">
@@ -160,27 +159,24 @@ export default function Hero() {
               </span>
             ))}
           </h1>
-          <div data-fade className="mt-6 flex flex-wrap gap-3 opacity-0 motion-reduce:opacity-100">
+          <div data-fade className="mt-6 flex flex-wrap gap-3 opacity-0 motion-reduce:opacity-100 max-md:order-3">
             <a
               href={heroContent.primary.href}
-              className="rounded-full bg-ink px-5 py-2.5 text-[0.8rem] font-semibold text-paper no-underline"
+              className="rounded-full bg-ink px-5 py-2.5 text-[0.8rem] font-semibold text-white no-underline transition-colors hover:bg-ink/90"
             >
               {heroContent.primary.label}
             </a>
             <a
               href={heroContent.secondary.href}
-              className="rounded-full border border-ink px-5 py-2.5 text-[0.8rem] font-semibold text-ink no-underline"
+              className="rounded-full border border-ink px-5 py-2.5 text-[0.8rem] font-semibold text-ink no-underline transition-colors hover:bg-ink/5"
             >
               {heroContent.secondary.label}
             </a>
           </div>
         </div>
 
-        <div className="max-w-88 justify-self-end text-right max-md:justify-self-start max-md:text-left">
-          <p data-fade className="m-0 text-[0.75rem] tracking-[0.12em] text-muted uppercase opacity-0 motion-reduce:opacity-100">
-            {heroContent.company}
-          </p>
-          <p className="mt-3 mb-0 text-[clamp(1.35rem,2vw,1.85rem)] leading-[1.15] font-semibold tracking-[-0.03em]">
+        <div className="max-w-88 justify-self-end text-right max-md:order-2 max-md:justify-self-start max-md:text-left">
+          <p className="mb-0 text-[1.1rem] md:text-[1.7rem] leading-[1.15] font-semibold tracking-[-0.03em] text-centermd:text-[clamp(1.35rem,2vw,1.85rem)]">
             {rightWords.map((word) => (
               <span key={word} className="mr-[0.24em] inline-block overflow-hidden align-bottom">
                 <span data-right className="inline-block translate-y-[110%] motion-reduce:translate-y-0">

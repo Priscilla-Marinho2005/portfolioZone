@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -87,10 +87,15 @@ export default function Contact() {
 
             const mm = gsap.matchMedia();
 
+            mm.add("(prefers-reduced-motion: reduce)", () => {
+                gsap.set(scope.querySelectorAll("[data-scrub]"), { opacity: 1 });
+            });
+
             // Entrada: título, linhas que se desenham e conteúdo que sobe, linha por linha
             mm.add("(prefers-reduced-motion: no-preference)", () => {
                 const rows = gsap.utils.toArray<HTMLElement>("[data-row]", scope);
                 const lines = gsap.utils.toArray<HTMLElement>("[data-line]", scope);
+                const lead = scope.querySelector<HTMLElement>("[data-lead]");
 
                 gsap.set(lines, { scaleX: 0, autoAlpha: 1, transformOrigin: "left center" });
 
@@ -98,12 +103,31 @@ export default function Contact() {
                     defaults: { ease: "power3.out" },
                     scrollTrigger: { trigger: scope.querySelector("[data-head]"), start: "top 80%", once: true },
                 });
-                head.to(scope.querySelectorAll("[data-word]"), { y: 0, duration: 0.85, stagger: 0.05 }).fromTo(
+                head.fromTo(
                     scope.querySelectorAll("[data-sub]"),
                     { autoAlpha: 0, y: 12 },
                     { autoAlpha: 1, y: 0, duration: 0.6 },
                     0.5,
                 );
+
+                let titleTween: gsap.core.Tween | undefined;
+                if (lead) {
+                    titleTween = gsap.fromTo(
+                        lead.querySelectorAll("[data-scrub]"),
+                        { opacity: 0.16 },
+                        {
+                            opacity: 1,
+                            ease: "none",
+                            stagger: 0.12,
+                            scrollTrigger: {
+                                trigger: lead,
+                                start: "top 82%",
+                                end: "bottom 48%",
+                                scrub: true,
+                            },
+                        },
+                    );
+                }
 
                 const timelines = rows.map((row, i) => {
                     const tl = gsap.timeline({
@@ -136,6 +160,8 @@ export default function Contact() {
                         t.scrollTrigger?.kill();
                         t.kill();
                     });
+                    titleTween?.scrollTrigger?.kill();
+                    titleTween?.kill();
                     endTween?.scrollTrigger?.kill();
                     endTween?.kill();
                 };
@@ -184,14 +210,15 @@ export default function Contact() {
                 <div data-head className="mb-16 max-md:mb-10">
                     <h2
                         id="contact-title"
-                        className="m-0 max-w-[14ch] font-serif text-[clamp(3rem,8vw,7.2rem)] leading-[0.9] font-normal tracking-[-0.04em]"
+                        data-lead
+                        className="m-0 max-w-[20ch] font-serif text-[clamp(2rem,4vw,3em)] leading-[1.1] font-semibold tracking-[0.03em]"
                     >
                         {titleWords.map((word, i) => (
-                            <span key={i} className="mr-[0.2em] inline-block overflow-hidden align-bottom">
-                                <span data-word className="inline-block translate-y-[110%] motion-reduce:translate-y-0">
+                            <Fragment key={i}>
+                                <span data-scrub className="inline-block">
                                     {word}
-                                </span>
-                            </span>
+                                </span>{" "}
+                            </Fragment>
                         ))}
                     </h2>
                     <p

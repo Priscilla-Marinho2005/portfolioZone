@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -8,7 +8,7 @@ import openhaus from "../../assets/openhaus-delta.vercel.app-OpenHaus Negócios 
 import jonathas from "../../assets/jonathascorretor.com.br-Jonathas Luz Corretor de Imóveis-cvscreenshot.jpeg";
 import debora from "../../assets/corretoradebora.com.br-Débora Silva Corretora de Imóveis-cvscreenshot.jpeg";
 import alexandre from "../../assets/alexandrecorretordeimoveis.com.br-Alexandre Arruda Corretor de Imóveis-cvscreenshot.jpeg";
-import zone from "../../assets/zoneconnection.com.br-Zone Connection CRM IA no WhatsApp e Sites para Imobiliárias-cvscreenshot.jpeg";
+import zone from "../../assets/zoneconnection.jpeg";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 // Evita saltos no mobile quando a barra do navegador aparece/some
@@ -26,10 +26,10 @@ type Project = {
 const projects: Project[] = [
     {
         id: "zone",
-        name: "Zone Connection",
-        type: "Site institucional, CRM e IA para WhatsApp",
+        name: "CRM Zone Connection",
+        type: "CRM para imobiliárias",
         description:
-            "Nosso site apresenta tudo o que fazemos: criação de sites, o CRM para imobiliárias e a inteligência artificial integrada ao WhatsApp para agilizar o atendimento.",
+            "CRM para imobiliárias, com controle de leads, agendamentos, contatos e muito mais.",
         href: "https://zoneconnection.com.br",
         image: zone,
     },
@@ -83,9 +83,9 @@ const projects: Project[] = [
 const titleWords = "Projetos que já estão no ar.".split(" ");
 
 const buttonClass =
-    "inline-block rounded-full bg-ink px-5 py-2.5 text-[0.8rem] font-semibold text-paper no-underline";
+    "inline-block rounded-full bg-ink px-5 py-2.5 text-[0.8rem] font-semibold text-white no-underline transition-colors hover:bg-ink/90";
 const imageClass =
-    "rounded-lg border border-ink/15 bg-paper shadow-[0_18px_40px_rgba(18,17,15,0.1)]";
+    "rounded-lg border border-ink/15 bg-paper shadow-[0_18px_40px_rgba(5,54,71,0.1)]";
 
 function ProjectInfo({ project }: { project: Project }) {
     return (
@@ -130,15 +130,30 @@ export default function Projects() {
 
             const mm = gsap.matchMedia();
 
-            // Título entra uma vez
+            mm.add("(prefers-reduced-motion: reduce)", () => {
+                gsap.set(scope.querySelectorAll("[data-scrub]"), { opacity: 1 });
+            });
+
             mm.add("(prefers-reduced-motion: no-preference)", () => {
-                const tween = gsap.to(scope.querySelectorAll("[data-word]"), {
-                    y: 0,
-                    duration: 0.85,
-                    stagger: 0.05,
-                    ease: "power3.out",
-                    scrollTrigger: { trigger: scope.querySelector("[data-header]"), start: "top 80%", once: true },
-                });
+                const lead = scope.querySelector<HTMLElement>("[data-lead]");
+                if (!lead) return;
+
+                const tween = gsap.fromTo(
+                    lead.querySelectorAll("[data-scrub]"),
+                    { opacity: 0.16 },
+                    {
+                        opacity: 1,
+                        ease: "none",
+                        stagger: 0.12,
+                        scrollTrigger: {
+                            trigger: lead,
+                            start: "top 82%",
+                            end: "bottom 48%",
+                            scrub: true,
+                        },
+                    },
+                );
+
                 return () => {
                     tween.scrollTrigger?.kill();
                     tween.kill();
@@ -204,17 +219,18 @@ export default function Projects() {
             aria-labelledby="projects-title"
             className="relative bg-paper text-ink"
         >
-            <div data-header className="mx-auto max-w-7xl px-8 pt-28 pb-16 max-md:px-6 max-md:pt-20 max-md:pb-10">
+            <div data-header className="mx-auto max-w-7xl px-8 pt-28 max-md:px-6 max-md:pt-20">
                 <h2
                     id="projects-title"
-                    className="m-0 max-w-[14ch] font-serif text-[clamp(3rem,8vw,7.2rem)] leading-[0.9] font-normal tracking-[-0.04em]"
+                    data-lead
+                    className="m-0 max-w-[14ch] font-serif text-[clamp(2rem,4vw,3em)] leading-[1.1] font-semibold tracking-[0.03em]"
                 >
                     {titleWords.map((word, i) => (
-                        <span key={i} className="mr-[0.2em] inline-block overflow-hidden align-bottom">
-                            <span data-word className="inline-block translate-y-[110%] motion-reduce:translate-y-0">
+                        <Fragment key={i}>
+                            <span data-scrub className="inline-block">
                                 {word}
-                            </span>
-                        </span>
+                            </span>{" "}
+                        </Fragment>
                     ))}
                 </h2>
             </div>
@@ -256,7 +272,7 @@ export default function Projects() {
                                 </div>
                             ))}
                             <div className="absolute inset-x-0 bottom-0 h-px bg-ink/15">
-                                <div data-bar className="h-full origin-left bg-ink" />
+                                <div data-bar className="h-full origin-left bg-brand-accent" />
                             </div>
                         </div>
                     </div>

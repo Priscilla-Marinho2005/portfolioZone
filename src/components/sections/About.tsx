@@ -5,12 +5,10 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const titleWords = "Uma ideia que se tornou um propósito.".split(" ");
-
 const companyLead =
-    "Criamos qualquer tipo de sistema para o seu negócio: ERP, CRM, gestão e muito mais.";
+    "Uma ideia que se tornou um propósito.";
 const systemsText =
-    "A Zone Connection nasceu para aproximar empresas da tecnologia e transformar ideias em soluções reais. Trabalhamos com ERP, CRM, sistemas de gestão e qualquer outra solução que a sua empresa precisar. Entendemos como o seu negócio funciona, mapeamos o que precisa ser organizado e desenvolvemos um sistema sob medida, do controle da rotina ao acompanhamento de clientes e resultados.";
+    "A Zone Connection nasceu para aproximar empresas da tecnologia e transformar ideias em soluções reais. Trabalhamos com ERP, CRM, sistemas de gestão e qualquer outra solução que a sua empresa precisar. Desenvolvemos sistemas sob medida, do controle da rotina ao acompanhamento de clientes e resultados.";
 
 const services = [
     { name: "ERP e sistemas de gestão", note: "Para organizar e automatizar a rotina da empresa" },
@@ -20,15 +18,15 @@ const services = [
 ];
 
 const foundersLead =
-    "Por trás da Zone Connection estão Eduardo Alves e Priscilla Marinho, dois desenvolvedores que decidiram unir suas habilidades para construir algo próprio.";
+    "Por trás da Zone Connection estão Eduardo Alves e Priscilla Marinho.";
 const foundersBody =
-    "Compartilhando ideias, enfrentando desafios e aprendendo a cada projeto, encontramos na tecnologia uma oportunidade de criar soluções e tirar planos do papel. Hoje, dividimos a responsabilidade de desenvolver nossos projetos e fazer a empresa crescer, transformando nossa parceria em algo que vai além do código.";
+    "Somos dois desenvolvedores que decidiram unir suas habilidades para construir algo próprio. Compartilhando ideias, enfrentando desafios e aprendendo a cada projeto, encontramos na tecnologia uma forma de transformar planos em realidade e fazer nossa parceria crescer para além do código.";
 
 function Lead({ text }: { text: string }) {
     return (
         <p
             data-lead
-            className="m-0 font-serif text-[clamp(1.7rem,2.9vw,2.5rem)] leading-[1.12] tracking-[-0.02em]"
+            className="m-0 font-sans text-[clamp(1.7rem,2.9vw,2.5rem)] leading-[1.19] font-semibold tracking-[0.03em]"
         >
             {text.split(" ").map((word, i) => (
                 <Fragment key={i}>
@@ -136,21 +134,6 @@ export default function About() {
             className="relative overflow-hidden bg-paper px-8 md:py-20 text-ink "
         >
             <div className="mx-auto flex max-w-7xl flex-col gap-24 max-md:gap-16">
-                {/* Título */}
-                <div data-block>
-                    <h2
-                        id="about-title"
-                        className="m-0 max-w-[16ch] font-serif text-[clamp(3rem,8vw,7.2rem)] leading-[0.9] font-normal tracking-[-0.04em]"
-                    >
-                        {titleWords.map((word, i) => (
-                            <span key={i} className="mr-[0.2em] inline-block overflow-hidden align-bottom">
-                                <span data-word className="inline-block translate-y-[110%] motion-reduce:translate-y-0">
-                                    {word}
-                                </span>
-                            </span>
-                        ))}
-                    </h2>
-                </div>
 
                 {/* Bloco 1: logo à esquerda, empresa à direita */}
                 <div
@@ -165,7 +148,7 @@ export default function About() {
                         />
                         <div
                             data-photo
-                            className="relative overflow-hidden rounded-lg bg-paper shadow-[0_18px_40px_rgba(18,17,15,0.08)] [clip-path:inset(0%_0%_100%_0%)] motion-reduce:[clip-path:none]"
+                            className="relative overflow-hidden rounded-lg bg-paper shadow-[0_18px_40px_rgba(5,54,71,0.08)] [clip-path:inset(0%_0%_100%_0%)] motion-reduce:[clip-path:none]"
                         >
                             <img
                                 data-photo-img
@@ -182,7 +165,7 @@ export default function About() {
 
                         <p
                             data-reveal
-                            className="mt-8 mb-0 max-w-[58ch] text-[1.02rem] leading-[1.7] opacity-0 motion-reduce:opacity-100"
+                            className="mt-8 mb-0 max-w-[70ch] text-[1.02rem] leading-[1.7] opacity-0 motion-reduce:opacity-100"
                         >
                             {systemsText}
                         </p>
@@ -227,14 +210,14 @@ export default function About() {
                         />
                         <div
                             data-photo
-                            className="relative overflow-hidden rounded-lg shadow-[0_18px_40px_rgba(18,17,15,0.08)] [clip-path:inset(0%_0%_100%_0%)] motion-reduce:[clip-path:none]"
+                            className="relative overflow-hidden rounded-lg shadow-[0_18px_40px_rgba(5,54,71,0.08)] [clip-path:inset(0%_0%_100%_0%)] motion-reduce:[clip-path:none]"
                         >
                             <img
                                 data-photo-img
                                 src="/foto.JPG"
                                 alt="Priscilla Marinho Falcão e Eduardo Alves, fundadores da Zone Connection"
                                 loading="lazy"
-                                className="block aspect-4/5 h-auto w-full object-cover"
+                                className="block aspect-2/2 h-auto w-full object-cover"
                             />
                         </div>
                     </figure>

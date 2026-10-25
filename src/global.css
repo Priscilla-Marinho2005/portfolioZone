@@ -1,11 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Instrument Sans", system-ui, sans-serif;
-  --font-serif: "Instrument Serif", Georgia, serif;
-  --color-ink: #12110f;
-  --color-paper: #f7f4ee;
-  --color-muted: rgba(18, 17, 15, 0.62);
+  --font-sans: "Blinker", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Blinker", ui-sans-serif, system-ui, sans-serif;
+  --color-ink: #053647;
+  --color-paper: #ffffff;
+  --color-muted: #64748b;
+  --color-brand-accent: #027dc2;
+  --color-brand-dark: #053647;
+  --color-surface-muted: #f8fafc;
 }
 
 @layer base {
@@ -20,6 +23,16 @@
 
   body {
     font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .text-gradient-brand {
+    background-image: linear-gradient(to right, #02b3ee, #014a7a);
+    background-clip: text;
+    color: transparent;
   }
 }
